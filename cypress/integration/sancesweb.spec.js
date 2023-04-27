@@ -9,7 +9,6 @@ describe('Login pedrotti', function(){
     })
     it('teste', () =>{
 
-        
         cy.get('[data-cy="loginemail"]').type('diego.farias@sances.com.br')
         cy.get('[data-cy="loginpass"]').type('LARANJAUVA')
         cy.get('[data-cy="btnloginEntrar"]').click()
