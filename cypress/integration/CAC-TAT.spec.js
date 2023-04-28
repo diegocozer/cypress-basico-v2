@@ -11,7 +11,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
         cy.title().should('be.equal', 'Central de Atendimento ao Cliente TAT')
     })
 
-    it('Insere os dados no input "nome"', function(){
+    it.only('Insere os dados no input "nome"', function(){
         const textoLongo = "teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste,teste"
 
         cy.get('#firstName').type('Diego')
@@ -24,7 +24,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
 
     })
 
-    it('exibe mensagem de error ao submeter o formulário quando o  e-mail é invalido',() =>{
+    it.only('exibe mensagem de error ao submeter o formulário quando o  e-mail é invalido',() =>{
         cy.get('#firstName').type('Diego')
         cy.get('#lastName').type('Cozer')
         cy.get('#email').type('diego@gmail,com')
@@ -32,9 +32,10 @@ describe('Central de atendimento ao Cliente TAT', function(){
         cy.get('#open-text-area').type('teste')
         cy.contains('button', 'Enviar').click()
         cy.get('.error').should('be.visible')
+        //oi
     })
 
-    it('campo de telefone continua vazio quando o preenchimento com o valor não-numerico',() =>{
+    it.only('campo de telefone continua vazio quando o preenchimento com o valor não-numerico',() =>{
         
         cy.get('#phone')
             .type('abc')
@@ -42,7 +43,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
      
     })
 
-    it('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido',() =>{
+    it.only('Exibe mensagem de erro quando o telefone se torna obrigatório mas não é preenchido',() =>{
         
         cy.get('#firstName').type('Diego')
         cy.get('#lastName').type('Cozer')
@@ -61,7 +62,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
      
     })
 
-    it('Preenche e limpa os campos nome, sobrenome, email e telefone',() =>{
+    it.only('Preenche e limpa os campos nome, sobrenome, email e telefone',() =>{
         
         cy.get('#firstName')
             .type('Diego')
@@ -91,7 +92,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
      
     })
 
-    it('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios',() =>{
+    it.only('Exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios',() =>{
         
        
         cy.contains('button', 'Enviar').click()
@@ -100,7 +101,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
     })
     
 
-    it('Envia o formulário com sucesso usando um comando customizado',() =>{
+    it.only('Envia o formulário com sucesso usando um comando customizado',() =>{
         
        cy.PreencheOsCamposEEnvia()
 
@@ -108,7 +109,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
        
     })
 
-    it('Seleciona um produto (Youtube) por seu texto',() =>{
+    it.only('Seleciona um produto (Youtube) por seu texto',() =>{
         
         cy.get('#product')
          .select('YouTube')
@@ -116,23 +117,23 @@ describe('Central de atendimento ao Cliente TAT', function(){
 
     })
 
-    it('Seleciona um produto (Mentoria) por seu valor',() =>{
+    it.only('Seleciona um produto (Mentoria) por seu valor',() =>{
         cy.get('#product')
          .select('mentoria')
             .should('have.value', 'Mentoria')
     })
 
-    it('Seleciona um produto (Blog) por seu índice',() =>{
+    it.only('Seleciona um produto (Blog) por seu índice',() =>{
         cy.get('#product')
          .select(1)
             .should('have.value', 'blog')
     })
     
-    it('Marcar o tipo de atendimento "Fedback"',() =>{
+    it.only('Marcar o tipo de atendimento "Fedback"',() =>{
         cy.get('input[type="radio"][value="feedback"]').check().should('have.value','feedback')
     })
 
-    it('Marcar cada tipo de atendimento',() =>{
+    it.only('Marcar cada tipo de atendimento',() =>{
         
         cy.get('input[type="radio"]').should('have.length', 3) // verifica se contem realmente 3 checkbox
         .each(($radio) => { //faz uma iteração em todos os elementos 
@@ -142,11 +143,11 @@ describe('Central de atendimento ao Cliente TAT', function(){
          
     })
     
-    it('Marca ambos checboxes, depois desmarcar o último',() =>{
+    it.only('Marca ambos checboxes, depois desmarcar o último',() =>{
         cy.get('input[type="checkbox"]').check().last().uncheck().should('not.be.checked')
     })
 
-    it('Seleciona dois arquivos da pasta fixtures',() =>{
+    it.only('Seleciona dois arquivos da pasta fixtures',() =>{
         cy.get('input[type="file"]').selectFile(['cypress/fixtures/example.json','cypress/fixtures/profile.json'])
         .then(input =>{
             console.log(input[0].files[1])
@@ -155,7 +156,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
         })
     })
 
-    it('Seleciona um arquivos da pasta fixtures',() =>{
+    it.only('Seleciona um arquivos da pasta fixtures',() =>{
         cy.get('input[type="file"]')
         .should('not.have.value')
          .selectFile('cypress/fixtures/example.json')
@@ -165,7 +166,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
         
     })
 
-    it('Seleciona um arquivo da pasta fixtures simulando um drag-and-drop',() =>{
+    it.only('Seleciona um arquivo da pasta fixtures simulando um drag-and-drop',() =>{
         cy.get('input[type="file"]')
         .should('not.have.value')
          .selectFile('cypress/fixtures/example.json', {action: "drag-drop"})
@@ -175,7 +176,7 @@ describe('Central de atendimento ao Cliente TAT', function(){
         
     })
 
-    it('Seleciona um arquivo da pasta fixtures para qual foi dado um as',() =>{
+    it.only('Seleciona um arquivo da pasta fixtures para qual foi dado um as',() =>{
       cy.fixture('example.json').as('sampleFile')
       cy.get('input[type="file"]')
         .selectFile('@sampleFile')
@@ -185,11 +186,11 @@ describe('Central de atendimento ao Cliente TAT', function(){
         })
     })
 
-    it('Link externo', () =>{
+    it.only('Link externo', () =>{
         cy.get('#privacy a').should('have.attr', 'target', "_blank") 
       })
 
-    it('Removendo o attr target', () =>{
+    it.only('Removendo o attr target', () =>{
         cy.get('#privacy a').invoke('removeAttr', 'target').click()
 
         cy.contains('Talking About Testing').should('be.visible')
