@@ -10,3 +10,10 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v2
+      name: Uploading
+      uses: actions/upload-artifact@v2
+      if: always()
+      with: 
+        name: cypress-execution-report
+        path: cypress/reports/html
+        retention-days: 30
